@@ -1,0 +1,88 @@
+/* &display=swap */
+@import "null.css";
+
+body {
+	font-family: Lato;
+	line-height: 1.625;
+	color: #424551;
+}
+
+.container {
+	max-width: 1232px;
+	margin: 0 auto;
+}
+
+.content {
+	max-width: 525px;
+	padding: 0px 0px 0px 135px;
+	margin: 0 0 0 auto;
+}
+
+.suptitle {
+	margin: 0px 0px 8px 0px;
+	padding: 180px 0px 0px 0px;
+	font-weight: 700;
+	line-height: 1.5;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: #1e212c;
+}
+.title {
+	margin: 0px 0px 40px 0px;
+	font-weight: 900;
+	font-size: 46px;
+	line-height: 1.3;
+	color: #1e212c;
+}
+.list {
+	margin: 0px 0px 48px 0px;
+}
+
+.item {
+	line-height: 2;
+	margin: 0px 0px 12px 0px;
+	padding: 0px 0px 0px 32px;
+}
+
+.item:last-child {
+	margin-bottom: 0;
+}
+
+.item::before {
+	content: "";
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin: 0 16px 0 -32px;
+	background: url("../img/mark.svg") 0 3px no-repeat;
+}
+
+.button {
+	display: inline-block;
+	padding: 0 32px;
+	font-size: 14px;
+	line-height: 3.1;
+	letter-spacing: 0.5px;
+	background: linear-gradient(55.95deg, #ff3f3a 0%, #f75e05 100%);
+	border-radius: 4px;
+	color: #ffffff;
+}
+
+.button:hover {
+	background: rgb(255, 137, 58);
+	box-shadow: 0 0 20px #ff3f3a;
+}
+
+/* ================================ */
+.maple {
+	display: inline-block;
+	font-size: 48px;
+}
+
+.maple::after {
+	content: "";
+	display: block;
+	height: 2px;
+	width: 30%;
+	background-color: #000;
+}
