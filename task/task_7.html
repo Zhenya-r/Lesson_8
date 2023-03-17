@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Task 7</title>
+</head>
+
+<body>
+   <a href="../index.html">До задач</a>
+   <p>Дано послідовність платіжок протягом року. Знайти сумарну кількість грошей за:</p>
+   <ol>
+      <li>
+         <p>за весь рік;</p>
+      </li>
+      <li>
+         <p>у першій половині року;</p>
+      </li>
+      <li>
+         <p>у другій половині року;</p>
+      </li>
+      <li>
+         <p>за літо;</p>
+      </li>
+      <li>
+         <p>за ІІ квартал;</p>
+      </li>
+      <li>
+         <p>за парні місяці (з парними номерами);</p>
+      </li>
+      <li>
+         <p>за місяці, які є початковими у сезоні (весна, літо, осінь, зима).</p>
+      </li>
+   </ol>
+   <hr>
+   <script>
+      const arrPayments = []
+      for (let i = 1; i <= 12; i++) {
+         const monthPaymen = parseFloat(prompt(`Введіть платіж за ${i}й місяць`))
+         arrPayments.push(monthPaymen)
+      }
+
+      function getSummPaymentsForTheYear(arrPayments) {
+         let summPaymentsForTheYear = 0
+         for (let i = 0; i < arrPayments.length; i++) {
+            summPaymentsForTheYear += arrPayments[i]
+         }
+         return summPaymentsForTheYear
+      }
+
+      function getSummPaymentsFirstSixMonth(arrPayments) {
+         let summPaymentsFirstSixMonth = 0
+         for (let i = 0; i < 6; i++) {
+            summPaymentsFirstSixMonth += arrPayments[i]
+         }
+
+         return summPaymentsFirstSixMonth
+      }
+
+      function getSummPaymentsSecondSixMonth(arrPayments) {
+         let summPaymentsSecondSixMonth = 0
+         for (let i = 6; i < 12; i++) {
+            summPaymentsSecondSixMonth += arrPayments[i]
+         }
+
+         return summPaymentsSecondSixMonth
+      }
+
+      function getSummPaymentsSummer(arrPayments) {
+         let summPaymentsSummer = 0
+         for (let i = 5; i < 8; i++) {
+            summPaymentsSummer += arrPayments[i]
+         }
+
+         return summPaymentsSummer
+      }
+
+      function getSummPaymentsSecondQuarter(arrPayments) {
+         let summPaymentsSecondQuarter = 0
+         for (let i = 3; i < 6; i++) {
+            summPaymentsSecondQuarter += arrPayments[i]
+         }
+
+         return summPaymentsSecondQuarter
+      }
+
+      function getSummPaymentsEventMonth(arrPayments) {
+         let summPaymentsEventMonth = 0
+         for (let i = 1; i < arrPayments.length; i += 2) {
+            summPaymentsEventMonth += arrPayments[i]
+         }
+
+         return summPaymentsEventMonth
+      }
+
+      function getSummPaymentsFirstMonthSeason(arrPayments) {
+         let summPaymentsFirstMonthSeason = 0
+         for (let i = 2; i < 12; i += 3) {
+            summPaymentsFirstMonthSeason += arrPayments[i]
+         }
+
+         return summPaymentsFirstMonthSeason
+      }
+
+      document.write(
+         `
+         <p>Платежі - ${arrPayments}</p>
+         <ol>
+            <li>
+               <p>за весь рік сума платежів = ${getSummPaymentsForTheYear(arrPayments)}</p>
+            </li>
+            <li>
+               <p>у першій половині року сума платежів = ${getSummPaymentsFirstSixMonth(arrPayments)}</p>
+            </li>
+            <li>
+               <p>у другій половині року сума платежів = ${getSummPaymentsSecondSixMonth(arrPayments)}</p>
+            </li>
+            <li>
+               <p>за літо сума платежів = ${getSummPaymentsSummer(arrPayments)}</p>
+            </li>
+            <li>
+               <p>за ІІ квартал сума платежів = ${getSummPaymentsSecondQuarter(arrPayments)}</p>
+            </li>
+            <li>
+               <p>за парні місяці (з парними номерами) сума платежів = ${getSummPaymentsEventMonth(arrPayments)}</p>
+            </li>
+            <li>
+               <p>за місяці, які є початковими у сезоні (весна, літо, осінь, зима) сума платежів = ${getSummPaymentsFirstMonthSeason(arrPayments)}</p>
+            </li>
+         </ol>
+         `
+      )
+
+   </script>
+</body>
+
+</html>

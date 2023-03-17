@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Task 3</title>
+</head>
+
+<body>
+   <a href="../index.html">До задач</a>
+   <p>Дано масив імен учнів. З’ясувати скільки разів зустрічається ім’я «Іван».</p>
+   <script>
+      const arrNameStudents = []
+      let studentName
+
+      do {
+         studentName = prompt("Введіть і'мя студента")
+         if (studentName) arrNameStudents.push(studentName)
+      } while (studentName)
+
+      function caclIvanName(arrNameStudents) {
+         let counterNameIvan = 0;
+         for (let i = 0; i < arrNameStudents.length; i++) {
+            if (arrNameStudents[i].toLowerCase() === 'іван') counterNameIvan++
+         }
+         return counterNameIvan
+      }
+
+      document.write(`Ім'я Іван в масиві зустрілось - ${caclIvanName(arrNameStudents)} разів`)
+
+   </script>
+</body>
+
+</html>

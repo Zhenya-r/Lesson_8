@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Task 4</title>
+</head>
+
+<body>
+   <a href="../index.html">До задач</a>
+   <p>Дано послідовність номерів автомобілів. Підрахувати кількість номерів, які :</p>
+   <ul>
+      <li>
+         <p>починаються на букву «А»;</p>
+      </li>
+      <li>
+         <p>перша і остання літери співпадають;</p>
+      </li>
+      <li>
+         <p>складаються з більше ніш 5 символів;</p>
+      </li>
+   </ul>
+   <hr>
+   <script>
+      let amountCarNumber = parseInt(prompt('Введіть кількість номерів (номери авто генеруються автоматично в форматі XX0000YY)'))
+      const carNumbers = getRandomCarNumber(amountCarNumber);
+
+
+      function getRandomCarNumber(amountCarNumber = 5, lengthCarNumber = 8) {
+         const arrCarNumber = []
+         for (let i = 0; i < amountCarNumber; i++) {
+            let carNumber = '';
+            for (j = 0; j < lengthCarNumber; j++) {
+               const arrLetters = ["А", "В", "Е", "I", "К", "М", "Н", "О", "Р", "С", "Т", "Х"]
+               const arrNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+               const tempNumber = lengthCarNumber - 3
+               if (j < 2 || j > tempNumber) carNumber += arrLetters[Math.floor(Math.random() * arrLetters.length)]
+               else carNumber += arrNumbers[Math.floor(Math.random() * arrNumbers.length)]
+            }
+            arrCarNumber.push(carNumber)
+         }
+         return arrCarNumber
+      }
+
+      function getNumberStartWith_A(arrCarNumber) {
+         let counntNumberStartWith_A = 0
+         for (let i = 0; i < arrCarNumber.length; i++) {
+            if (arrCarNumber[i][0] === "А") counntNumberStartWith_A++
+         }
+         return counntNumberStartWith_A
+      }
+
+      function getSameFirstAndLastLatters(carNumbers) {
+         let countSameFirstAndLastLatters = 0
+         for (let i = 0; i < carNumbers.length; i++) {
+            if (carNumbers[i][0] === carNumbers[i][carNumbers[i].length - 1]) countSameFirstAndLastLatters++
+         }
+         return countSameFirstAndLastLatters
+      }
+
+      function getNumberLengthMore_5(carNumbers) {
+         let counterNumberLengthMore_5 = 0;
+         for (let i = 0; i < carNumbers.length; i++) {
+            if (carNumbers[i].length > 5) counterNumberLengthMore_5++
+         }
+         return counterNumberLengthMore_5
+      }
+
+      document.write(`
+      <p>Список номерів автомобілів - ${carNumbers}</p>
+      <ul>
+         <li>
+            <p>${getNumberStartWith_A(carNumbers)} номерів - починаються на букву «А»;</p>
+         </li>
+         <li>
+            <p>У ${getSameFirstAndLastLatters(carNumbers)} номерів - перша і остання літери співпадають;</p>
+         </li>
+         <li>
+            <p>${getNumberLengthMore_5(carNumbers)} номерів - складаються з більше ніш 5 символів;</p>
+         </li>
+      </ul>
+      `)
+
+
+   </script>
+</body>
+
+</html>

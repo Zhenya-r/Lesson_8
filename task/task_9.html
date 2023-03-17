@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Task 9</title>
+</head>
+
+<body>
+   <a href="../index.html">До задач</a>
+   <p>Морський бій. Користувач вводить кількість клітинок одновимірного масиву та кількість одиночних кораблів. Комп’ютер довільно розміщує ці одиночні кораблі у масиві по один у клітинці (якщо у клітинці 0, то клітинка пуста, якщо 1 – то це означає, що там є корабель. Користувач вводить номер клітинки, куди стріляє. Гра продовжується до тих пір, поки не будуть потоплені усі кораблі.</p>
+   <hr>
+   <script>
+      const numberOfCells = parseInt(prompt('Введіть кількість клітинок'))
+      const numberOfShips = parseInt(prompt('Введіть кількість кораблів'))
+
+      const playingField = createShips(numberOfShips)
+
+      function createCells(numberOfCells) {
+         const arrCells = []
+         for (let i = 0; i < numberOfCells; i++) {
+            arrCells.push(0)
+         }
+         return arrCells
+      }
+
+      function createShips(numberOfShips) {
+         const cells = createCells(numberOfCells)
+         for (let i = 0; i < numberOfShips; i++) {
+            let shipPlace = Math.floor(Math.random() * (numberOfCells))
+            if (!cells[shipPlace]) {
+               cells[shipPlace] = 1
+            }
+            else i--
+         }
+         return cells
+      }
+
+      let drownedShips = 0
+      let aliveShips = numberOfShips
+
+      while (aliveShips) {
+         let userChoice = parseInt(prompt(`Введіть номер клітинки (від 1 до ${numberOfCells}. Залишилось потопити ${aliveShips} кораблів)`))
+         if (playingField[userChoice - 1]) {
+            playingField[userChoice - 1] = 0
+            alert('Влучив!')
+            drownedShips++
+            aliveShips--
+         }
+         else alert('Промах, спробуй ще')
+      }
+
+
+   </script>
+</body>
+
+</html>

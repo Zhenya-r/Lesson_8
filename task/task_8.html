@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Task 8</title>
+</head>
+
+<body>
+   <a href="../index.html">До задач</a>
+   <p>Дано одновимірний масив, у якому зберігається певна виграшна сума (елементи заповнюються випадковим чином значеннями від -500 до 500). Надаючи користувачу можливість вибирати номери елементів (поки він не відмовиться). Знаходити сумарний виграш.</p>
+   <hr>
+   <script>
+      const amount = parseInt(prompt('Введіть кількість елементів'))
+      const arrElements = createArray(amount)
+      function createArray(amountElements) {
+         const arr = [];
+         for (let i = 0; i < amountElements; i++) {
+            let element = (-500) + Math.floor(Math.random() * (500 - (-500) + 1))
+            arr.push(element)
+         }
+         return arr
+      }
+
+      let winningSum = 0;
+      let userChoice;
+      do {
+         userChoice = parseInt(prompt(`Введіть номер елементу від 1 до ${amount}`))
+         if (userChoice) {
+            let element = arrElements[userChoice - 1]
+            winningSum += element
+            if (element < 0) alert(`Ви втратили ${Math.abs(element)}`)
+            else alert(`Ви виграли ${element}`)
+         }
+      } while (userChoice);
+
+      document.write(`
+      Ваш виграш складає = ${winningSum}
+      `)
+   </script>
+</body>
+
+</html>

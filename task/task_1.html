@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Task 1</title>
+</head>
+
+<body>
+   <a href="../index.html">До задач</a>
+   <p>Дано масив, який містить оцінки з К предметів. Знайти середній бал і з’ясувати до якої категорії він відноситься (відмінник, двійочник (має хоча би одну двійку), хорошист (оцінки добре і відмінно), трійочник(є хоча би одна трійка)).</p>
+
+   <script>
+      const assessments = []
+      const numberAssessments = parseInt(prompt('Яку кількість оцінок ви бажаєте ввести?'))
+
+      for (let i = 1; i <= numberAssessments; i++) {
+         const assessment = parseInt(prompt(`Введіть ${i} оцінку (від 2 до 5)`))
+         assessments.push(assessment)
+      }
+
+      function getGradePointAverage(arrayAssessments) {
+         let summAssessments = 0;
+         for (let i = 0; i < arrayAssessments.length; i++) {
+            summAssessments += arrayAssessments[i];
+         }
+         let gradePointAverage = summAssessments / numberAssessments;
+
+         return gradePointAverage;
+      }
+
+      function getCategories(arrayAssessments) {
+         let categories
+         let minAssessment = 5
+         for (let i = 0; i < arrayAssessments.length; i++) {
+            if (arrayAssessments[i] < minAssessment) minAssessment = arrayAssessments[i];
+         }
+         switch (minAssessment) {
+            case 2:
+               categories = 'Двійочник'
+               break;
+            case 3:
+               categories = 'Трійочник'
+               break;
+            case 4:
+               categories = 'Хорошист'
+               break;
+
+            default:
+               categories = 'Відмінник'
+               break;
+         }
+         return categories
+      }
+
+      document.write(`
+      Оцінки студента - ${assessments} <br>
+      Середній бал - ${getGradePointAverage(assessments)} <br>
+      Категорія студента - ${getCategories(assessments)}
+      `)
+
+   </script>
+</body>
+
+</html>

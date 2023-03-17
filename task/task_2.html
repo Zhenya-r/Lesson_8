@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Task 2</title>
+</head>
+
+<body>
+   <a href="../index.html">До задач</a>
+   <p>Дано масив, який зберігає кількість відвідувачів магазину протягом тижня. Вивести на екран:</p>
+   <ul>
+      <li>
+         <p>номери днів, протягом яких кількість відвідувачів була меншою за 20;</p>
+      </li>
+      <li>
+         <p>номери днів, коли кількість відвідувачів була мінімальною;</p>
+      </li>
+      <li>
+         <p>номери днів, коли кількість відвідувачів була мінімальною;</p>
+      </li>
+      <li>
+         <p>загальну кількість клієнтів у робочі дні та окремо загальну кількість днів на вихідних.</p>
+      </li>
+   </ul>
+   <hr>
+   <script>
+      const numberOfVisitorsPerWeek = [];
+
+
+      for (let i = 1; i <= 7; i++) {
+         const dayOfTheWeek = parseInt(prompt(`Введіть кількість відвідучачів в ${i} день`))
+         numberOfVisitorsPerWeek.push(dayOfTheWeek)
+      }
+
+      function getDayWhenVisitorsLess_20(arrayDays) {
+         let dayWhenVisitorsLess_20 = []
+         for (let i = 0; i < arrayDays.length; i++) {
+            if (arrayDays[i] < 20) {
+               dayWhenVisitorsLess_20.push(i + 1)
+            }
+         }
+         return dayWhenVisitorsLess_20
+      }
+
+      function getMaxVisitorsPerDay(arrayDays) {
+         const maxVisitorsPerDay = [];
+         const maxVisitors = Math.max(...arrayDays)
+         for (let i = 0; i < arrayDays.length; i++) {
+            if (arrayDays[i] === maxVisitors) maxVisitorsPerDay.push(i + 1)
+         }
+         return maxVisitorsPerDay;
+      }
+
+      function getMinVisitorsPerDay(arrayDays) {
+         const minVisitorsPerDay = [];
+         const minVisitors = Math.min(...arrayDays)
+         for (let i = 0; i < arrayDays.length; i++) {
+            if (arrayDays[i] === minVisitors) minVisitorsPerDay.push(i + 1)
+         }
+         return minVisitorsPerDay;
+      }
+
+
+      function getTotalVisitorsPerWeekends(arrayDays) {
+         const overallWeeks = Math.floor(arrayDays.length / 7) // підраховуємо кількість повних тижнів
+         const weekendDays = []; // створюємо масив з індексами вихідних днів
+         let totalVisitorsPerWeekends = 0;
+
+         // заповнюємо массив індексами вихідних днів 
+         for (let i = 1; i <= overallWeeks; i++) {
+            weekendDays.push(7 * i - 2) // отримуємо індекси сб
+            weekendDays.push(7 * i - 1) // отримуємо індекси нд
+
+            /*
+               або можна задати i = 0 і рахувати індекси за такою формулою
+
+               weekendDays.push(7 * i + 5) // отримуємо індекси сб
+               weekendDays.push(7 * i + 6) // отримуємо індекси нд
+            */
+
+         }
+
+         // рахуємо кількість відвідувачів в вихідні дні
+         for (let i = 0; i < weekendDays.length; i++) {
+            totalVisitorsPerWeekends += arrayDays[weekendDays[i]]
+         }
+
+         return totalVisitorsPerWeekends
+      }
+
+      function getTotalVisitorsWorkdays(arrayDays) {
+         let totalVisitorsPerWeek = 0
+         for (let i = 0; i < arrayDays.length; i++) {
+            totalVisitorsPerWeek += arrayDays[i]
+         }
+         let totalVisitorsPerWorkdays = totalVisitorsPerWeek - getTotalVisitorsPerWeekends(arrayDays)
+         return totalVisitorsPerWorkdays
+      }
+
+      document.write(`
+      <ul>
+         <li>
+            <p>номери днів, протягом яких кількість відвідувачів була меншою за 20 - ${getDayWhenVisitorsLess_20(numberOfVisitorsPerWeek)} </p>
+         </li>
+         <li>
+            <p>номери днів, коли кількість відвідувачів була мінімальною - ${getMinVisitorsPerDay(numberOfVisitorsPerWeek)}</p>
+         </li>
+         <li>
+            <p>номери днів, коли кількість відвідувачів була максимальною - ${getMaxVisitorsPerDay(numberOfVisitorsPerWeek)}</p>
+         </li>
+         <li>
+            <p>загальнa кількість клієнтів у робочі дні - ${getTotalVisitorsWorkdays(numberOfVisitorsPerWeek)} <br>
+               загальнa кількість відвідувачів на вихідних - ${getTotalVisitorsPerWeekends(numberOfVisitorsPerWeek)} </p>
+         </li>
+      </ul>
+      `)
+
+
+
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Task 5</title>
+</head>
+
+<body>
+   <a href="../index.html">До задач</a>
+   <p>Дано послідовність оцінок учня. Підрахувати кількість:</p>
+   <ol>
+      <li>
+         <p>двійок</p>
+      </li>
+      <li>
+         <p>кількість хороших оцінок (добре, відмінно);</p>
+      </li>
+      <li>
+         <p>кількість оцінок, які нижче середнього.</p>
+      </li>
+   </ol>
+   <hr>
+   <script>
+      const amountStudentMark = parseInt(prompt("Введіть кількість оцінок"))
+
+      function createArrayRandomMark(amountMark) {
+         const arrayRandomMarks = []
+         for (let i = 0; i < amountMark; i++) {
+            let mark = 1 + Math.floor(Math.random() * (12 - 1 + 1))
+            arrayRandomMarks.push(mark)
+         }
+         return arrayRandomMarks
+      }
+
+      const studentMarks = createArrayRandomMark(amountStudentMark)
+
+      function getAmountMark_2(marks) {
+         let amountMark_2 = 0
+         for (let i = 0; i < marks.length; i++) {
+            if (marks[i] === 2) amountMark_2++
+         }
+         return amountMark_2
+      }
+
+      function getMarksMoreThan_6(marks) {
+         let marksMoreThan_6 = 0
+         for (let i = 0; i < marks.length; i++) {
+            if (marks[i] > 6) marksMoreThan_6++
+         }
+         return marksMoreThan_6
+      }
+
+      function getAverageMark(marks) {
+         let summMarks = 0;
+         for (let i = 0; i < marks.length; i++) {
+            summMarks += marks[i]
+         }
+         const averageMark = summMarks / marks.length
+         return averageMark
+      }
+
+      function getMarksMoreThanAverage(marks) {
+         let countMarksMoreThanAverage = 0
+         const averageMark = getAverageMark(marks)
+         for (let i = 0; i < marks.length; i++) {
+            if (marks[i] < averageMark) countMarksMoreThanAverage++
+         }
+         return countMarksMoreThanAverage
+      }
+
+      document.write(`
+      <p>Оцінки студента - ${studentMarks}</p>
+      <ol>
+         <li>
+            <p>двійок - ${getAmountMark_2(studentMarks)}</p>
+         </li>
+         <li>
+            <p>кількість хороших оцінок (добре, відмінно) -${getMarksMoreThan_6(studentMarks)}</p>
+         </li>
+         <li>
+            <p>кількість оцінок, які нижче середнього - ${getMarksMoreThanAverage(studentMarks)}</p>
+         </li>
+      </ol>
+      `)
+
+   </script>
+</body>
+
+</html>
